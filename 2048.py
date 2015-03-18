@@ -204,13 +204,14 @@ class GameRects:
 			return False
 
 		fill_num = random.randint(1, blank_num)
+		double =  random.randint(1, 2)
 
 		for i in range(5):
 			for j in range(5):
 				if self.num_arr[i][j]==0:
 					fill_num = fill_num -1
 					if fill_num == 0:
-						self.num_arr[i][j] = 2
+						self.num_arr[i][j] = 2*double
 						return True
 
 

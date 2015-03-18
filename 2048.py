@@ -158,21 +158,13 @@ class GameRects:
 						k=k+1
 
 	def join(self, direct):
-		tmp_line = [0,0,0,0,0]
 		if direct == 'l':
 			for i in range(5):
-				k = 0
-				j = 0
-				while k<4:
-					if self.num_arr[i][k] == self.num_arr[i][k+1]:
-						tmp_line[j] = self.num_arr[i][k]*2
-						k = k + 2
-					else:
-						tmp_line[j] = self.num_arr[i][k]
-						k = k + 1
-					j = j+1
-				for ii in range(5):
-					self.num_arr[i][ii] = tmp_line[ii]
+				for j in range(0,4):
+					if self.num_arr[i][j] == self.num_arr[i][j+1]:
+						self.num_arr[i][j] = self.num_arr[i][j]*2
+						del self.num_arr[i][j+1]
+						self.num_arr[i].append(0)
 
 		if direct == 'r':
 			for i in range(5):

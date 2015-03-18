@@ -82,6 +82,12 @@ class NumRect(pygame.Surface):
 			pygame.draw.rect(self,pygame.Color(255,55,0), pygame.Rect((2,2),(76,76)))
 			w,h = self.font.size(text)
 			self.blit( self.font.render(text, True, (0, 0, 0)), ((80-w)/2, (80-h)/2) )
+		elif num == 4096:
+			text='4096'
+			self.font = pygame.font.SysFont("arial", 35);
+			pygame.draw.rect(self,pygame.Color(55,55,0), pygame.Rect((2,2),(76,76)))
+			w,h = self.font.size(text)
+			self.blit( self.font.render(text, True, (0, 0, 0)), ((80-w)/2, (80-h)/2) )
 class GameRects:
 	def __init__(self):
 		self.num_arr=[

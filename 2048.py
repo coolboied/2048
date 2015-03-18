@@ -91,10 +91,14 @@ class GameRects:
 			[0,0,0,0,0],
 			[0,0,0,0,0]
 			]
-	def click(self, direct):
-		self.move(direct)
-		self.join(direct)
-		self.append()
+	def click(self, direct, step):
+		print(direct, step)
+		if step == 1:
+			self.move(direct)
+		if step == 2:
+			self.join(direct)
+		if step == 3:
+			self.append()
 	def move(self, direct):
 		if direct == 'l':
 			for i in range(5):
@@ -223,28 +227,33 @@ class Screen:
 			game_area=pygame.Surface((400,400))
 
 			game_rects = self.game_rects
+
+
 			event = pygame.event.wait()
+			key = '0'
 			if event.type == QUIT:
 				exit()
 			if event.type == KEYDOWN:
 				if event.key == K_UP:
-					game_rects.click('u')
+					key = 'u'
 				if event.key == K_DOWN:
-					game_rects.click('d')
+					key = 'd'
 				if event.key == K_LEFT:
-					print("press l")
-					game_rects.click('l')
+					key = 'l'
 				if event.key == K_RIGHT:
-					game_rects.click('r')
+					key = 'r'
 
 
-			for i in range(5):
-				for j in range(5):	
-					num_rect = NumRect(game_rects.num_arr[i][j])
-					game_area.blit(num_rect,(80*j,80*i))
+			for step in range(1,4):
+				if key != '0':
+					game_rects.click(key,step) 
+				for i in range(5):
+					for j in range(5):	
+						num_rect = NumRect(game_rects.num_arr[i][j])
+						game_area.blit(num_rect,(80*j,80*i))
 
-			screen.blit(game_area,(40,40))
-			pygame.display.update()
+				screen.blit(game_area,(40,40))
+				pygame.display.update()
 
 screen = Screen()
 screen.run()
